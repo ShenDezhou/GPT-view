@@ -7,6 +7,9 @@ module.exports = [{
   }, {
     name: 'RPM',
     componentName: 'rpm'
+  }, {
+    name: 'NVWA',
+    componentName: 'nvwa'
   }]
 }, {
   name: '英文GPT',
@@ -14,8 +17,5 @@ module.exports = [{
   sub: [{
     name: 'GPT-Neo',
     componentName: 'neo'
-  }, {
-    name: 'Dialo-GPT',
-    componentName: 'dialo'
   }]
 }]

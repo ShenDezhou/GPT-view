@@ -26,6 +26,11 @@ export default new Router({
       path: '/neo',
       name: 'neo',
       component: () => import('@/components/AppEn')
+    },
+    {
+      path: '/nvwa',
+      name: 'nvwa',
+      component: () => import('@/components/AppNvwa')
     }
   ]
 })

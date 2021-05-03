@@ -21,6 +21,11 @@ import EnMain from '@/components/EnMain'
 
 export default {
   name: 'app',
+  data () {
+    return {
+
+    }
+  },
   components: {
     'navmenu': NavMenu,
     'vheader': Header,

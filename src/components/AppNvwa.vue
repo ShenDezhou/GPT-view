@@ -17,7 +17,7 @@
 <script>
 import NavMenu from '@/components/NavMenu'
 import Header from '@/components/Header'
-import Main from '@/components/Main'
+import NvwaMain from '@/components/NvwaMain'
 
 export default {
   name: 'app',
@@ -29,7 +29,7 @@ export default {
   components: {
     'navmenu': NavMenu,
     'vheader': Header,
-    'cmain': Main
+    'cmain': NvwaMain
   }
 }
 
