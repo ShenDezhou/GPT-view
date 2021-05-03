@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <router-view/>
+    <backtop>
+      <router-view />
+    </backtop>
   </div>
 </template>
 
 <script>
+import BackTop from '@/components/BackTop'
+
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+    }
+  },
+  components: {
+    'backtop': BackTop
+  }
 }
 </script>
 

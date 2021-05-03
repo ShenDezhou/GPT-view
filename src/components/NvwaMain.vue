@@ -109,7 +109,7 @@
     </el-row>
     <el-row :gutter='20'>
       <el-col :span='6'>
-        GPT输入
+        设定
         <el-input
           type='textarea'
           placeholder=''
@@ -122,16 +122,17 @@
       </el-col>
 
       <el-col :span='18'>
-        <el-table
-          :data='tableData'
-          style='width: 100%'
-          max-height='250'>
-          <el-table-column
-            prop='lines'
-            label='生成'>
-          </el-table-column>
-        </el-table>
-
+        <ul class="infinite-list" v-infinite-scroll="load" style="overflow:auto">
+          <li v-for="talk in talk_list" class="infinite-list-item" v-bind:key="talk.id">
+              <template v-if="talk.person==='A'">
+                  <el-avatar :size="20" :src="circleUrl"></el-avatar>a:{{ talk.content }}
+              </template>
+              <template v-else>
+                  <el-avatar shape="square" :size="20" :src="squareUrl"></el-avatar>b:{{ talk.content }}
+              </template>
+          </li>
+        </ul>
+        <el-backtop target=".infinite-list"></el-backtop>
       </el-col>
     </el-row>
   </div>
@@ -150,8 +151,21 @@ export default {
       engine = 'CPM'
     }
     return {
+      circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+      squareUrl: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+      count: 0,
+      talk_list: [{
+        'id': -2,
+        'person': 'A',
+        'content': 'TxT'
+      },
+      {
+        'id': -1,
+        'person': 'B',
+        'content': 'TxT'
+      }],
       prompt: '',
-      activeNames: ['1'],
+      activeNames: ['-1'],
       engine: engine,
       number: 1,
       response_l: 1,
@@ -166,7 +180,21 @@ export default {
     }
   },
   methods: {
-
+    load () {
+      if (this.count < 100) {
+        this.count += 2
+        this.talk_list.push({
+          'id': this.count,
+          'person': 'A',
+          'content': 'TxT'
+        })
+        this.talk_list.push({
+          'id': this.count + 1,
+          'person': 'B',
+          'content': 'TxT'
+        })
+      }
+    },
     handleChange (val) {
       this.$message(val)
     },
