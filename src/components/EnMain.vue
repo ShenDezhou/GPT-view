@@ -136,6 +136,7 @@
 </template>
 
 <script>
+import { Loading } from 'element-ui'
 
 export default {
   name: 'Main',
@@ -176,6 +177,7 @@ export default {
       }
     },
     request () {
+      let loadingInstance = Loading.service({'text': 'requesting..'})
       let data = {
         'prompt': this.prompt,
         'number': this.number,
@@ -190,6 +192,14 @@ export default {
             '-----------------GPTNEO返回数据-------------------',
             res
           )
+          self.tableData = res.answer
+        })
+        .catch(function (error) {
+          console.log(error)
+          self.tableData = []
+        })
+        .then(function () {
+          loadingInstance.close()
         })
     }
   }
