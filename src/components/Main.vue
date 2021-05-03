@@ -142,10 +142,13 @@ export default {
   comments: {},
   data () {
     console.log('url--info', this.$route.path)
+    var engine = this.$route.path.toUpperCase().replace('/','')
+    if (engine == '')
+      engine = 'CPM'
     return {
       prompt: '',
       activeNames: ['1'],
-      engine: 'CPM',
+      engine: engine,
       number: 1,
       response_l: 1,
       top_p: 0,
