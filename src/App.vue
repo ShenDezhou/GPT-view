@@ -1,35 +1,17 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header class="header">
-        <vheader />
-      </el-header>
-      <el-container>
-        <el-aside width="200px">
-          <navmenu></navmenu>
-        </el-aside>
-        <el-main>
-          <cmain></cmain>
-        </el-main>
-      </el-container>
-      <el-footer class="footer">Footer</el-footer>
-    </el-container>
+    <router-view/>
   </div>
 </template>
-<script>
-import NavMenu from '@/components/NavMenu'
-import Header from '@/components/Header'
-import Main from '@/components/Main'
 
+<script>
 export default {
-  name: 'app',
-  components: {
-    'navmenu': NavMenu,
-    'vheader': Header,
-    'cmain': Main
+  name: "App",
+  data() {
+    return {
+    }
   }
 }
-
 </script>
 
 <style>

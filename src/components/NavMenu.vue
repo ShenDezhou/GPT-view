@@ -6,6 +6,7 @@
         class="el-menu-vertical-demo"
         router
         unique-opened
+        @select="handleSelect"
         @open="handleOpen"
         @close="handleClose"
         background-color="#545c64"
@@ -38,19 +39,22 @@
 import menu from '@/config/menu-config'
 
 export default {
-  name: "navmenu",
+  name: 'navmenu',
   comments: {},
-  data() {
+  data () {
     return {
       menu: menu
     }
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    handleSelect (index, indexPath) {
+      console.log(index, indexPath)
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }

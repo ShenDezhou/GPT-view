@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
+import AppEn from '@/components/AppEn'
 
 Vue.use(Router)
 
@@ -9,7 +10,22 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: App
+      component: ()=>import('@/components/App')
+    },
+    {
+      path: '/cpm',
+      name: 'cpm',
+      component: ()=>import('@/components/App')
+    },
+    {
+      path: '/rpm',
+      name: 'rpm',
+      component: ()=>import('@/components/App')
+    },
+    {
+      path: '/neo',
+      name: 'neo',
+      component: ()=>import('@/components/AppEn')
     }
   ]
 })

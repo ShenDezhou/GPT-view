@@ -6,7 +6,7 @@
           type='textarea'
           placeholder='请输入内容'
           v-model='prompt'
-          maxlength='1024'
+          maxlength='5000'
           show-word-limit
         >
         </el-input>
@@ -145,7 +145,7 @@ export default {
     return {
       prompt: '',
       activeNames: ['1'],
-      engine: 'CPM',
+      engine: 'NEO',
       number: 1,
       response_l: 1,
       top_p: 0,

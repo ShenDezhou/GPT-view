@@ -3,19 +3,19 @@ module.exports = [{
   id: 'cn-gpt',
   sub: [{
     name: 'CPM',
-    componentName: 'BasicLayout'
+    componentName: 'cpm'
   }, {
-    name: 'CPM(RCT)',
-    componentName: 'BasicContainer'
+    name: 'RPM',
+    componentName: 'rpm'
   }]
 }, {
   name: '英文GPT',
   id: 'en-gpt',
   sub: [{
     name: 'GPT-Neo',
-    componentName: 'FormRadio'
+    componentName: 'neo'
   }, {
     name: 'Dialo-GPT',
-    componentName: 'FormCheckbox'
+    componentName: 'dialo'
   }]
 }]
