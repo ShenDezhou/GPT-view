@@ -8,6 +8,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 Vue.prototype.axios = axios
+axios.defaults.baseURL = 'http://localhost/'
 
 Vue.config.productionTip = false
 

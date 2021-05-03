@@ -92,7 +92,7 @@
         </el-collapse>
       </el-col>
       <el-col :span='6'>
-        <el-button type='primary' icon='el-icon-search'>请求</el-button>
+        <el-button v-on:click='request' type='primary' icon='el-icon-search'>请求</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -174,6 +174,23 @@ export default {
         case 'c': this.engine = 'GPT-Neo'; break
         case 'd': this.engine = 'DialoGPT'; break
       }
+    },
+    request () {
+      let data = {
+        'prompt': this.prompt,
+        'number': this.number,
+        'length': this.response_l,
+        'top_p': this.top_p,
+        'temperature': this.temperature
+      }
+      this.$message('click on item ' + JSON.stringify(data))
+      this.axios.post(`/z`, data)
+        .then(res => {
+          console.log(
+            '-----------------GPTNEO返回数据-------------------',
+            res
+          )
+        })
     }
   }
 }

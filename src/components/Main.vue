@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <el-row>
       <el-col :span='24'>
         <el-input
@@ -92,7 +92,8 @@
         </el-collapse>
       </el-col>
       <el-col :span='6'>
-        <el-button type='primary' icon='el-icon-search'>请求</el-button>
+        <el-button type='primary' icon='el-icon-search'
+          v-on:click="request">请求</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -130,6 +131,7 @@
             label='生成'>
           </el-table-column>
         </el-table>
+
       </el-col>
     </el-row>
   </div>
@@ -142,9 +144,10 @@ export default {
   comments: {},
   data () {
     console.log('url--info', this.$route.path)
-    var engine = this.$route.path.toUpperCase().replace('/','')
-    if (engine == '')
+    var engine = this.$route.path.toUpperCase().replace('/', '')
+    if (engine.length === 0) {
       engine = 'CPM'
+    }
     return {
       prompt: '',
       activeNames: ['1'],
@@ -177,6 +180,23 @@ export default {
         case 'c': this.engine = 'GPT-Neo'; break
         case 'd': this.engine = 'DialoGPT'; break
       }
+    },
+    request () {
+      let data = {
+        'prompt': this.prompt,
+        'number': this.number,
+        'length': this.response_l,
+        'top_p': this.top_p,
+        'temperature': this.temperature
+      }
+      this.$message('click on item ' + JSON.stringify(data))
+      this.axios.post(`/z`, data)
+        .then(res => {
+          console.log(
+            '-----------------CPM返回数据-------------------',
+            res
+          )
+        })
     }
   }
 }
@@ -186,11 +206,9 @@ export default {
 .el-row {
   margin-bottom: 20px;
 
-&
-:last-child {
-  margin-bottom: 0;
-}
-
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .el-col {

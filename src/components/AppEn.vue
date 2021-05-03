@@ -1,5 +1,4 @@
 <template>
-  <div id="app">
     <el-container>
       <el-header class="header">
         <vheader />
@@ -14,7 +13,6 @@
       </el-container>
       <el-footer class="footer">Footer</el-footer>
     </el-container>
-  </div>
 </template>
 <script>
 import NavMenu from '@/components/NavMenu'
