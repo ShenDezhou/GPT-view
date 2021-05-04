@@ -162,7 +162,7 @@ export default {
       engine = 'CPM'
     }
     return {
-      prompt: '',
+      prompt: '2021年的微软，是否还值得加入？',
       activeNames: ['-1'],
       engine: engine,
       number: 1,
