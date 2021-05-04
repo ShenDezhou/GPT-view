@@ -31,6 +31,11 @@ export default new Router({
       path: '/nvwa',
       name: 'nvwa',
       component: () => import('@/components/AppNvwa')
+    },
+    {
+      path: '/seg',
+      name: 'seg',
+      component: () => import('@/bertcomponents/App')
     }
   ]
 })

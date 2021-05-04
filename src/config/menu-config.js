@@ -18,4 +18,11 @@ module.exports = [{
     name: 'GPT-Neo',
     componentName: 'neo'
   }]
+}, {
+  name: '中文BERT',
+  id: 'cn-bert',
+  sub: [{
+    name: 'BERT分词',
+    componentName: 'seg'
+  }]
 }]

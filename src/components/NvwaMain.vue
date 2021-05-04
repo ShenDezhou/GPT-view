@@ -226,11 +226,11 @@ export default {
             '-----------------CPM返回数据-------------------',
             res
           )
-          self.tableData = res.answer
+          this.tableData = res.answer
         })
         .catch(function (error) {
           console.log(error)
-          self.tableData = []
+          this.tableData = []
         })
         .then(function () {
           loadingInstance.close()

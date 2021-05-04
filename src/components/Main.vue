@@ -131,7 +131,6 @@
             label='生成'>
           </el-table-column>
         </el-table>
-
       </el-col>
     </el-row>
   </div>
@@ -139,6 +138,7 @@
 
 <script>
 import { Loading } from 'element-ui'
+import axios from 'axios'
 
 export default {
   name: 'Main',
@@ -192,17 +192,20 @@ export default {
         'temperature': this.temperature
       }
       this.$message('click on item ' + JSON.stringify(data))
-      this.axios.post(`/z`, data)
-        .then(res => {
-          console.log(
-            '-----------------CPM返回数据-------------------',
-            res
-          )
-          self.tableData = res.answer
-        })
+      axios({
+        url: `http://localhost:8000/z`,
+        method: 'post',
+        data
+      }).then(res => {
+        console.log(
+          '-----------------CPM返回数据-------------------',
+          res
+        )
+        this.tableData = res.answer
+      })
         .catch(function (error) {
           console.log(error)
-          self.tableData = []
+          this.tableData = []
         })
         .then(function () {
           loadingInstance.close()

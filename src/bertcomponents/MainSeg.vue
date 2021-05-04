@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="content">
     <el-row>
       <el-col :span='24'>
         <el-input
           type='textarea'
           placeholder='请输入内容'
           v-model='prompt'
-          maxlength='5000'
+          maxlength='1024'
           show-word-limit
         >
         </el-input>
@@ -92,7 +92,8 @@
         </el-collapse>
       </el-col>
       <el-col :span='6'>
-        <el-button v-on:click='request' type='primary' icon='el-icon-search'>请求</el-button>
+        <el-button type='primary' icon='el-icon-search'
+          v-on:click="request">请求</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -108,13 +109,13 @@
     </el-row>
     <el-row :gutter='20'>
       <el-col :span='6'>
-        GPT输入
+        {{engine}}输入
         <el-input
           type='textarea'
           placeholder=''
           :autosize='{ minRows: 2, maxRows: 4}'
           v-model='prompt'
-          maxlength='5000'
+          maxlength='1024'
           show-word-limit
         >
         </el-input>
@@ -126,8 +127,20 @@
           style='width: 100%'
           max-height='250'>
           <el-table-column
-            prop='lines'
-            label='生成'>
+            prop='word'
+            label='词'>
+          </el-table-column>
+          <el-table-column
+            prop='start'
+            label='起始位'>
+          </el-table-column>
+          <el-table-column
+            prop='end'
+            label='结束位'>
+          </el-table-column>
+          <el-table-column
+            prop='type'
+            label='类别'>
           </el-table-column>
         </el-table>
       </el-col>
@@ -137,16 +150,21 @@
 
 <script>
 import { Loading } from 'element-ui'
+import axios from 'axios'
 
 export default {
   name: 'Main',
   comments: {},
   data () {
     console.log('url--info', this.$route.path)
+    var engine = this.$route.path.toUpperCase().replace('/', '')
+    if (engine.length === 0) {
+      engine = 'CPM'
+    }
     return {
       prompt: '',
-      activeNames: ['1'],
-      engine: 'NEO',
+      activeNames: ['-1'],
+      engine: engine,
       number: 1,
       response_l: 1,
       top_p: 0,
@@ -177,23 +195,22 @@ export default {
       }
     },
     request () {
-      let loadingInstance = Loading.service({'text': 'requesting..'})
+      let loadingInstance = Loading.service({'text': '请求中..'})
       let data = {
-        'prompt': this.prompt,
-        'number': this.number,
-        'length': this.response_l,
-        'top_p': this.top_p,
-        'temperature': this.temperature
+        'text': this.prompt
       }
       this.$message('click on item ' + JSON.stringify(data))
-      this.axios.post(`/z`, data)
-        .then(res => {
-          console.log(
-            '-----------------GPTNEO返回数据-------------------',
-            res
-          )
-          this.tableData = res.answer
-        })
+      axios({
+        url: `http://120.48.23.157:58076/z`,
+        method: 'post',
+        data
+      }).then(res => {
+        console.log(
+          '-----------------CPM返回数据-------------------',
+          res
+        )
+        this.tableData = res.data.data
+      })
         .catch(function (error) {
           console.log(error)
           this.tableData = []
@@ -210,11 +227,9 @@ export default {
 .el-row {
   margin-bottom: 20px;
 
-&
-:last-child {
-  margin-bottom: 0;
-}
-
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .el-col {
