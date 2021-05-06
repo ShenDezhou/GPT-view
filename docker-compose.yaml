@@ -9,4 +9,4 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 8080
-    command: "npm run dev"
+    command: "docker-entrypoint.sh npm run dev"
