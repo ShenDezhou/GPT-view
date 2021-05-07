@@ -15,3 +15,4 @@ yarn-error.log*
 node_modules/
 helm/helm
 docker-compose-dev.yaml
+docker-compose-pub.yaml

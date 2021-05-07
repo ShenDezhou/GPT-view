@@ -164,7 +164,7 @@ export default {
       engine: engine,
       number: 1,
       response_l: 10,
-      top_p: 0.01,
+      top_p: 0,
       temperature: 0.01,
       tableData: [{
         lines: '张三...'
