@@ -27,7 +27,7 @@
                     <el-dropdown-item command="a">CPM</el-dropdown-item>
                     <el-dropdown-item command="b">RPM</el-dropdown-item>
                     <el-dropdown-item command="c">GPT-Neo</el-dropdown-item>
-                    <el-dropdown-item command="d">DialoGPT</el-dropdown-item>
+                    <el-dropdown-item command="d">RPM-G2</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </div>
@@ -140,6 +140,7 @@
 import { Loading } from 'element-ui'
 import axios from 'axios'
 
+
 export default {
   name: 'Main',
   comments: {},
@@ -211,7 +212,12 @@ export default {
           res
         )
         var result = res.data.result.map(i => {
-          return {'lines': i}
+          var pos = [i.lastIndexOf('。'), i.lastIndexOf('？'), i.lastIndexOf('！')]
+          var maxPos = Math.max(...pos)
+          if (maxPos === -1) {
+            maxPos = i.length
+          }
+          return {'lines': i.substring(0, maxPos + 1)}
         })
         this.tableData = result
       })
