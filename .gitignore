@@ -14,3 +14,4 @@ yarn-error.log*
 *.sln
 node_modules/
 helm/helm
+docker-compose-dev.yaml
