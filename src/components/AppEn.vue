@@ -11,7 +11,7 @@
           <cmain></cmain>
         </el-main>
       </el-container>
-      <el-footer class="footer">Footer</el-footer>
+      <el-footer class="footer">RCT_Studio</el-footer>
     </el-container>
 </template>
 <script>
