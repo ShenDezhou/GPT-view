@@ -140,7 +140,6 @@
 import { Loading } from 'element-ui'
 import axios from 'axios'
 
-
 export default {
   name: 'Main',
   comments: {},
@@ -157,10 +156,11 @@ export default {
         'GPT-Neo': 'http://39.98.127.31:8012/z',
         'RPM-G2': 'http://121.89.205.93:8012/z'
       },
-      prompt: '默写英文：\n' +
-        '狗dog\n' +
-        '猫cat\n' +
-        '鸟',
+      prompt: '--你好\n' +
+        '-你最喜欢的东西是什么?\n' +
+        '-我喜欢优美的环境，安静的庭院，空灵的雨滴，都是令人心悦的。\n' +
+        '-你最害怕的东西是什么?\n' +
+        '-我害怕人类。',
       activeNames: ['1'],
       engine: engine,
       number: 1,
