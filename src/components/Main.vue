@@ -150,13 +150,22 @@ export default {
       engine = 'CPM'
     }
     return {
-      prompt: '',
+      backends: {
+        'CPM': 'http://121.89.205.93:8001/z',
+        'RPM': 'http://39.98.127.31:8010/z',
+        'GPT-Neo': 'http://39.98.127.31:8012/z',
+        'RPM-G2': 'http://121.89.205.93:8012/z'
+      },
+      prompt: '默写英文：\n' +
+        '狗dog\n' +
+        '猫cat\n' +
+        '鸟',
       activeNames: ['1'],
       engine: engine,
       number: 1,
-      response_l: 1,
-      top_p: 0,
-      temperature: 0,
+      response_l: 10,
+      top_p: 0.01,
+      temperature: 0.01,
       tableData: [{
         lines: '张三...'
       },
@@ -179,7 +188,7 @@ export default {
         case 'a': this.engine = 'CPM'; break
         case 'b': this.engine = 'RPM'; break
         case 'c': this.engine = 'GPT-Neo'; break
-        case 'd': this.engine = 'DialoGPT'; break
+        case 'd': this.engine = 'RPM-G2'; break
       }
     },
     request () {
@@ -193,7 +202,7 @@ export default {
       }
       this.$message('click on item ' + JSON.stringify(data))
       axios({
-        url: `http://localhost:8000/z`,
+        url: this.backends[this.engine],
         method: 'post',
         data
       }).then(res => {
@@ -201,7 +210,10 @@ export default {
           '-----------------CPM返回数据-------------------',
           res
         )
-        this.tableData = res.answer
+        var result = res.data.result.map(i => {
+          return {'lines': i}
+        })
+        this.tableData = result
       })
         .catch(function (error) {
           console.log(error)
